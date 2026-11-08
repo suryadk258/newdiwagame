@@ -96,7 +96,8 @@ body {
     backdrop-filter: blur(16px) saturate(180%) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important;
-}#appLoader {
+}
+    #appLoader {
     position: fixed;
     top: 0;
     left: 0;
@@ -477,53 +478,7 @@ body {
     box-shadow: 0 0 8px #00f0ff;
 }
 
-/* 1. ऊपर के 4 स्पेशल गेम्स (साइड में बड़े, बीच में छोटे)[span_2](start_span)[span_2](end_span) */
-.top-4-special-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-    align-items: start;
-    margin-bottom: 16px;
-}
-
-.col-side {
-    display: flex;
-    flex-direction: column;
-}
-
-.col-center {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.special-card-link {
-    display: block;
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    background: #0d1117;
-    text-decoration: none;
-}
-
-.special-card-link.tall-card {
-    height: 250px;
-}
-
-.special-card-link.square-card {
-    height: 121px;
-}
-
-.special-card-link img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Golden Frame Search Box Placement */
+/* Golden Frame Search Box */
 .golden-search-box {
     margin: 12px 0 16px 0;
     position: relative;
@@ -548,63 +503,86 @@ body {
     color: #cbd5e1;
 }
 
-/* 2. नीचे के बाकी सभी गेम्स (3-कॉलम सिंपल ग्रिड)[span_3](start_span)[span_3](end_span) */
-.normal-3col-grid {
+/* 3-Column Large Poster Grid */
+.large-3col-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 25px;
 }
 
-.game-poster-card {
+.big-poster-card {
     position: relative;
     width: 100%;
-    height: 145px;
-    border-radius: 12px;
+    height: 220px; /* सभी डिब्बे बड़े पोस्टर साइज़ */
+    border-radius: 14px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     background: #0d1117;
     display: block;
     text-decoration: none;
+    padding: 2.5px; /* चमकीले बॉर्डर के लिए पैडिंग */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
 }
 
-.game-poster-card img {
+.big-poster-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 11px;
+}
+
+/* 4 अलग-अलग चमकदार व आकर्षित फ्रेम्स (Glowing Borders) */
+.frame-gold {
+    background: linear-gradient(145deg, #ffd700, #ff8c00, #ffee55);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.frame-neon {
+    background: linear-gradient(145deg, #00f0ff, #0055ff, #8000ff);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+}
+
+.frame-ruby {
+    background: linear-gradient(145deg, #ff0055, #ff0000, #ff77aa);
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.7);
+}
+
+.frame-emerald {
+    background: linear-gradient(145deg, #00ff66, #009933, #aaffaa);
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.7);
 }
 
 .green-download-btn {
     position: absolute;
-    bottom: 6px;
-    right: 6px;
-    width: 28px;
-    height: 28px;
+    bottom: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
     background: #00e676;
-    border: 1.5px solid #ffffff;
+    border: 2px solid #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    font-size: 13px;
-    box-shadow: 0 0 10px rgba(0, 230, 118, 0.8);
+    font-size: 14px;
+    box-shadow: 0 0 12px rgba(0, 230, 118, 0.9);
     z-index: 5;
 }
 
 .hot-badge {
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 7px;
+    left: 7px;
     background: linear-gradient(90deg, #ff0055, #ff5500);
     color: #fff;
     font-size: 9px;
     font-weight: 800;
-    padding: 2px 6px;
+    padding: 2px 7px;
     border-radius: 8px;
     z-index: 5;
+    box-shadow: 0 0 8px rgba(255, 0, 85, 0.8);
 }
 
 .category-pills {
@@ -750,7 +728,7 @@ body {
 }
 </style>
 </head>
-    <body>
+<body>
 
 <!-- RGB Animated Ambient Lights -->
 <div class="rgb-light-1"></div>
@@ -860,10 +838,7 @@ body {
             </div>
         </div>
 
-        <!-- 1. ऊपर के 4 स्पेशल गेम (साइड में लंबे, बीच में दो छोटे)[span_4](start_span)[span_4](end_span) -->
-        <div class="top-4-special-grid" id="top4Container"></div>
-
-        <!-- 2. गोल्डन फ्रेम वाला सर्च बॉक्स -->
+        <!-- गोल्डन फ्रेम वाला सर्च बॉक्स -->
         <div class="golden-search-box">
             <input type="text" id="searchInput" placeholder="Search Yono, Rummy, Bonus...">
         </div>
@@ -880,8 +855,8 @@ body {
             <button class="sort-btn" onclick="sortGames('low', event)">Bonus Low</button>
         </div>
 
-        <!-- 3. नीचे के बाकी सभी गेम्स (3-कॉलम पोस्टर ग्रिड)[span_5](start_span)[span_5](end_span) -->
-        <div class="normal-3col-grid" id="appsContainer"></div>
+        <!-- सभी गेम्स 3-कॉलम में बड़े डिब्बे और अलग-अलग शाइनिंग फ्रेम्स के साथ -->
+        <div class="large-3col-grid" id="appsContainer"></div>
     </div>
 
     <div class="bottom-sticky-bar">
@@ -903,7 +878,7 @@ body {
     </div>
 
 </div>
-        <script type="module">
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
@@ -991,8 +966,11 @@ const backupGames = [
 
 let allGames = [];
 
+// 4 अलग-अलग शाइनिंग फ्रेम क्लासेज का ऐरे
+const frameClasses = ['frame-gold', 'frame-neon', 'frame-ruby', 'frame-emerald'];
+
 function getImageSrc(imgName) {
-    if (!imgName) return 'https://via.placeholder.com/150x200/00f0ff/02040a?text=Game';
+    if (!imgName) return 'https://via.placeholder.com/150x220/00f0ff/02040a?text=Game';
     if (imgName.startsWith('http://') || imgName.startsWith('https://')) return imgName;
     return imgName;
 }
@@ -1004,56 +982,20 @@ function getBonusValue(game) {
     return match ? parseInt(match[0], 10) : 551;
 }
 
-// 1. ऊपर के 4 स्पेशल गेम रेंडर करना[span_6](start_span)[span_6](end_span)
-function renderTop4Special(games) {
-    const top4El = document.getElementById('top4Container');
-    top4El.innerHTML = '';
-    const top4 = games.slice(0, 4);
-    if (top4.length < 4) return;
-
-    top4El.innerHTML = `
-        <div class="col-side">
-            <a href="${top4[0].link || '#'}" class="special-card-link tall-card" target="_blank">
-                <span class="hot-badge">Hot</span>
-                <img src="${getImageSrc(top4[0].image)}" alt="${top4[0].name}">
-                <div class="green-download-btn"><i class="fa-solid fa-arrow-down"></i></div>
-            </a>
-        </div>
-        <div class="col-center">
-            <a href="${top4[1].link || '#'}" class="special-card-link square-card" target="_blank">
-                <span class="hot-badge">Hot</span>
-                <img src="${getImageSrc(top4[1].image)}" alt="${top4[1].name}">
-                <div class="green-download-btn"><i class="fa-solid fa-arrow-down"></i></div>
-            </a>
-            <a href="${top4[2].link || '#'}" class="special-card-link square-card" target="_blank">
-                <span class="hot-badge">Hot</span>
-                <img src="${getImageSrc(top4[2].image)}" alt="${top4[2].name}">
-                <div class="green-download-btn"><i class="fa-solid fa-arrow-down"></i></div>
-            </a>
-        </div>
-        <div class="col-side">
-            <a href="${top4[3].link || '#'}" class="special-card-link tall-card" target="_blank">
-                <span class="hot-badge">Hot</span>
-                <img src="${getImageSrc(top4[3].image)}" alt="${top4[3].name}">
-                <div class="green-download-btn"><i class="fa-solid fa-arrow-down"></i></div>
-            </a>
-        </div>
-    `;
-}
-
-// 2. नीचे के बाकी गेम्स रेंडर करना (5वें गेम से आगे)[span_7](start_span)[span_7](end_span)
-function renderRemainingGames(games) {
+// सभी गेम्स को 3-कॉलम बड़े पोस्टर्स और अलग-अलग चमकीली फ्रेम्स में दिखाना
+function renderAppList(games) {
     const appsEl = document.getElementById('appsContainer');
     appsEl.innerHTML = '';
     
-    const remaining = games.length > 4 ? games.slice(4) : games;
-    
-    remaining.forEach(game => {
+    games.forEach((game, index) => {
         const imgSrc = getImageSrc(game.image);
+        // हर डिब्बे को अलग-अलग शाइनिंग फ्रेम देने के लिए % 4 लॉजिक
+        const currentFrame = frameClasses[index % frameClasses.length];
+        
         appsEl.innerHTML += `
-            <a href="${game.link || '#'}" class="game-poster-card" data-name="${game.name.toLowerCase()}" target="_blank">
+            <a href="${game.link || '#'}" class="big-poster-card ${currentFrame}" data-name="${game.name.toLowerCase()}" target="_blank">
                 <span class="hot-badge">Hot</span>
-                <img src="${imgSrc}" alt="${game.name}" onerror="this.src='https://via.placeholder.com/150x200/00f0ff/02040a?text=${encodeURIComponent(game.name)}'">
+                <img src="${imgSrc}" alt="${game.name}" onerror="this.src='https://via.placeholder.com/150x220/00f0ff/02040a?text=${encodeURIComponent(game.name)}'">
                 <div class="green-download-btn"><i class="fa-solid fa-arrow-down"></i></div>
             </a>
         `;
@@ -1061,8 +1003,7 @@ function renderRemainingGames(games) {
 }
 
 async function loadData() {
-    renderTop4Special(backupGames);
-    renderRemainingGames(backupGames);
+    renderAppList(backupGames);
 
     try {
         const snapshot = await getDocs(collection(db, "games"));
@@ -1070,8 +1011,7 @@ async function loadData() {
             allGames = [];
             snapshot.forEach(docSnap => allGames.push({ id: docSnap.id, ...docSnap.data() }));
             allGames.sort((a, b) => (a.order || 999) - (b.order || 999));
-            renderTop4Special(allGames);
-            renderRemainingGames(allGames);
+            renderAppList(allGames);
         }
     } catch (err) {
         console.log("Using default games list...", err);
@@ -1101,7 +1041,7 @@ window.filterCategory = function(type, event) {
     } else if (type === 'upcoming') {
         filtered = filtered.filter(g => g.upcoming === true);
     }
-    renderRemainingGames(filtered);
+    renderAppList(filtered);
 };
 
 window.sortGames = function(sortType, event) {
@@ -1116,12 +1056,12 @@ window.sortGames = function(sortType, event) {
     } else if (sortType === 'low') {
         sorted.sort((a, b) => getBonusValue(a) - getBonusValue(b));
     }
-    renderRemainingGames(sorted);
+    renderAppList(sorted);
 };
 
 document.getElementById('searchInput').addEventListener('input', function(e) {
     const val = e.target.value.toLowerCase();
-    const cards = document.querySelectorAll('.game-poster-card');
+    const cards = document.querySelectorAll('.big-poster-card');
     cards.forEach(card => {
         const name = card.getAttribute('data-name');
         card.style.display = name.includes(val) ? 'block' : 'none';
@@ -1177,5 +1117,3 @@ loadTelegram();
 
 </body>
 </html>
-
-    
