@@ -507,21 +507,23 @@ body {
 .large-3col-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 16px; /* स्पेस बढ़ाया गया ताकि नीचे निकला हुआ डाउनलोड बटन न टकराए */
     margin-bottom: 25px;
+    padding-bottom: 10px;
 }
 
 .big-poster-card {
     position: relative;
     width: 100%;
-    height: 255px; /* फोटो और नाम बिल्कुल न कटे इसलिए हाइट और बढ़ाई गई है */
+    height: 245px;
     border-radius: 16px;
-    overflow: visible; /* ताकि डाउनलोड बटन बाहर अच्छे से दिखे */
+    overflow: visible; /* बटन को साफ़ बाहर दिखाने के लिए */
     background: #0d1117;
     display: block;
     text-decoration: none;
     padding: 3px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+    margin-bottom: 10px;
 }
 
 .card-inner-img {
@@ -553,31 +555,31 @@ body {
     box-shadow: 0 0 18px rgba(0, 255, 102, 0.8);
 }
 
-/* सजा हुआ और शानदार डेकोरेटेड डाउनलोड बटन (नीचे दाईं तरफ थोड़ा बाहर निकला हुआ) */
+/* डाउनलोड बटन अब बिल्कुल सही नीचे और थोड़ा बाहर, ग्रीन फिल पल्स एनिमेशन के साथ */
 .green-download-btn {
     position: absolute;
-    bottom: -6px;
-    right: -6px;
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(135deg, #00ff87, #60efff);
+    bottom: -12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #00ff66, #00b0ff);
     border: 2.5px solid #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #02040a;
+    color: #ffffff;
     font-size: 16px;
     font-weight: 900;
-    box-shadow: 0 0 18px rgba(0, 255, 135, 0.9), 0 0 10px rgba(0, 240, 255, 0.8);
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.9), 0 0 10px rgba(0, 240, 255, 0.8);
     z-index: 10;
-    animation: pulseButton 2s infinite;
+    animation: greenPulse 1.5s infinite;
 }
 
-@keyframes pulseButton {
-    0% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 255, 135, 0.9); }
-    50% { transform: scale(1.1); box-shadow: 0 0 25px rgba(0, 240, 255, 1); }
-    100% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 255, 135, 0.9); }
+@keyframes greenPulse {
+    0% { transform: scale(1); background: #00ff66; box-shadow: 0 0 15px rgba(0, 255, 102, 0.8); }
+    50% { transform: scale(1.12); background: #00ffcc; box-shadow: 0 0 25px rgba(0, 255, 204, 1); }
+    100% { transform: scale(1); background: #00ff66; box-shadow: 0 0 15px rgba(0, 255, 102, 0.8); }
 }
 
 .hot-badge {
@@ -864,7 +866,7 @@ body {
             <button class="sort-btn" onclick="sortGames('low', event)">Bonus Low</button>
         </div>
 
-        <!-- सभी गेम्स 3-कॉलम बड़े पोस्टर्स (सजे हुए और बाहर निकले हुए डाउनलोड बटन के साथ) -->
+        <!-- सभी गेम्स ग्रिड -->
         <div class="large-3col-grid" id="appsContainer"></div>
     </div>
 
@@ -886,8 +888,8 @@ body {
         </div>
     </div>
 
-                    </div>
-                        <script type="module">
+</div>
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
@@ -978,7 +980,7 @@ let allGames = [];
 const frameClasses = ['frame-gold', 'frame-neon', 'frame-ruby', 'frame-emerald'];
 
 function getImageSrc(imgName) {
-    if (!imgName) return 'https://via.placeholder.com/150x255/00f0ff/02040a?text=Game';
+    if (!imgName) return 'https://via.placeholder.com/150x245/00f0ff/02040a?text=Game';
     if (imgName.startsWith('http://') || imgName.startsWith('https://')) return imgName;
     return imgName;
 }
@@ -1001,7 +1003,7 @@ function renderAppList(games) {
         appsEl.innerHTML += `
             <a href="${game.link || '#'}" class="big-poster-card ${currentFrame}" data-name="${game.name.toLowerCase()}" target="_blank">
                 <span class="hot-badge">Hot</span>
-                <img src="${imgSrc}" class="card-inner-img" alt="${game.name}" onerror="this.src='https://via.placeholder.com/150x255/00f0ff/02040a?text=${encodeURIComponent(game.name)}'">
+                <img src="${imgSrc}" class="card-inner-img" alt="${game.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/150x245/00f0ff/02040a?text=${encodeURIComponent(game.name)}'">
                 <div class="green-download-btn"><i class="fa-solid fa-arrow-down"></i></div>
             </a>
         `;
