@@ -507,74 +507,83 @@ body {
 .large-3col-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 25px;
 }
 
 .big-poster-card {
     position: relative;
     width: 100%;
-    height: 220px; /* सभी डिब्बे बड़े पोस्टर साइज़ */
-    border-radius: 14px;
-    overflow: hidden;
+    height: 255px; /* फोटो और नाम बिल्कुल न कटे इसलिए हाइट और बढ़ाई गई है */
+    border-radius: 16px;
+    overflow: visible; /* ताकि डाउनलोड बटन बाहर अच्छे से दिखे */
     background: #0d1117;
     display: block;
     text-decoration: none;
-    padding: 2.5px; /* चमकीले बॉर्डर के लिए पैडिंग */
-    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    padding: 3px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.7);
 }
 
-.big-poster-card img {
+.card-inner-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 11px;
+    border-radius: 13px;
 }
 
 /* 4 अलग-अलग चमकदार व आकर्षित फ्रेम्स (Glowing Borders) */
 .frame-gold {
     background: linear-gradient(145deg, #ffd700, #ff8c00, #ffee55);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
 }
 
 .frame-neon {
     background: linear-gradient(145deg, #00f0ff, #0055ff, #8000ff);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+    box-shadow: 0 0 18px rgba(0, 240, 255, 0.8);
 }
 
 .frame-ruby {
     background: linear-gradient(145deg, #ff0055, #ff0000, #ff77aa);
-    box-shadow: 0 0 15px rgba(255, 0, 85, 0.7);
+    box-shadow: 0 0 18px rgba(255, 0, 85, 0.8);
 }
 
 .frame-emerald {
     background: linear-gradient(145deg, #00ff66, #009933, #aaffaa);
-    box-shadow: 0 0 15px rgba(0, 255, 102, 0.7);
+    box-shadow: 0 0 18px rgba(0, 255, 102, 0.8);
 }
 
+/* सजा हुआ और शानदार डेकोरेटेड डाउनलोड बटन (नीचे दाईं तरफ थोड़ा बाहर निकला हुआ) */
 .green-download-btn {
     position: absolute;
-    bottom: 8px;
-    right: 8px;
-    width: 32px;
-    height: 32px;
-    background: #00e676;
-    border: 2px solid #ffffff;
+    bottom: -6px;
+    right: -6px;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #00ff87, #60efff);
+    border: 2.5px solid #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
-    font-size: 14px;
-    box-shadow: 0 0 12px rgba(0, 230, 118, 0.9);
-    z-index: 5;
+    color: #02040a;
+    font-size: 16px;
+    font-weight: 900;
+    box-shadow: 0 0 18px rgba(0, 255, 135, 0.9), 0 0 10px rgba(0, 240, 255, 0.8);
+    z-index: 10;
+    animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+    0% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 255, 135, 0.9); }
+    50% { transform: scale(1.1); box-shadow: 0 0 25px rgba(0, 240, 255, 1); }
+    100% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 255, 135, 0.9); }
 }
 
 .hot-badge {
     position: absolute;
-    top: 7px;
-    left: 7px;
+    top: 6px;
+    left: 6px;
     background: linear-gradient(90deg, #ff0055, #ff5500);
     color: #fff;
     font-size: 9px;
@@ -855,7 +864,7 @@ body {
             <button class="sort-btn" onclick="sortGames('low', event)">Bonus Low</button>
         </div>
 
-        <!-- सभी गेम्स 3-कॉलम में बड़े डिब्बे और अलग-अलग शाइनिंग फ्रेम्स के साथ -->
+        <!-- सभी गेम्स 3-कॉलम बड़े पोस्टर्स (सजे हुए और बाहर निकले हुए डाउनलोड बटन के साथ) -->
         <div class="large-3col-grid" id="appsContainer"></div>
     </div>
 
@@ -877,8 +886,8 @@ body {
         </div>
     </div>
 
-</div>
-<script type="module">
+                    </div>
+                        <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
@@ -966,11 +975,10 @@ const backupGames = [
 
 let allGames = [];
 
-// 4 अलग-अलग शाइनिंग फ्रेम क्लासेज का ऐरे
 const frameClasses = ['frame-gold', 'frame-neon', 'frame-ruby', 'frame-emerald'];
 
 function getImageSrc(imgName) {
-    if (!imgName) return 'https://via.placeholder.com/150x220/00f0ff/02040a?text=Game';
+    if (!imgName) return 'https://via.placeholder.com/150x255/00f0ff/02040a?text=Game';
     if (imgName.startsWith('http://') || imgName.startsWith('https://')) return imgName;
     return imgName;
 }
@@ -982,20 +990,18 @@ function getBonusValue(game) {
     return match ? parseInt(match[0], 10) : 551;
 }
 
-// सभी गेम्स को 3-कॉलम बड़े पोस्टर्स और अलग-अलग चमकीली फ्रेम्स में दिखाना
 function renderAppList(games) {
     const appsEl = document.getElementById('appsContainer');
     appsEl.innerHTML = '';
     
     games.forEach((game, index) => {
         const imgSrc = getImageSrc(game.image);
-        // हर डिब्बे को अलग-अलग शाइनिंग फ्रेम देने के लिए % 4 लॉजिक
         const currentFrame = frameClasses[index % frameClasses.length];
         
         appsEl.innerHTML += `
             <a href="${game.link || '#'}" class="big-poster-card ${currentFrame}" data-name="${game.name.toLowerCase()}" target="_blank">
                 <span class="hot-badge">Hot</span>
-                <img src="${imgSrc}" alt="${game.name}" onerror="this.src='https://via.placeholder.com/150x220/00f0ff/02040a?text=${encodeURIComponent(game.name)}'">
+                <img src="${imgSrc}" class="card-inner-img" alt="${game.name}" onerror="this.src='https://via.placeholder.com/150x255/00f0ff/02040a?text=${encodeURIComponent(game.name)}'">
                 <div class="green-download-btn"><i class="fa-solid fa-arrow-down"></i></div>
             </a>
         `;
