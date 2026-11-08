@@ -148,7 +148,7 @@ body {
     background: linear-gradient(90deg, #ff0055, #ffd700, #00ff66, #00f0ff);
     border-radius: 10px;
     box-shadow: 0 0 15px #00f0ff;
-    animation: fillInstant 0.3s forwards linear;
+    animation: fillInstant 0.2s forwards linear;
 }
 
 @keyframes fillInstant {
@@ -507,23 +507,23 @@ body {
 .large-3col-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px; /* स्पेस बढ़ाया गया ताकि नीचे निकला हुआ डाउनलोड बटन न टकराए */
-    margin-bottom: 25px;
-    padding-bottom: 10px;
+    gap: 16px; 
+    margin-bottom: 30px;
+    padding-bottom: 12px;
 }
 
 .big-poster-card {
     position: relative;
     width: 100%;
-    height: 245px;
-    border-radius: 16px;
-    overflow: visible; /* बटन को साफ़ बाहर दिखाने के लिए */
+    height: 220px; /* फोटो बिल्कुल सही फिट होगी, कटेगी नहीं */
+    border-radius: 14px;
+    overflow: visible; 
     background: #0d1117;
     display: block;
     text-decoration: none;
-    padding: 3px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.7);
-    margin-bottom: 10px;
+    padding: 2.5px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    margin-bottom: 15px;
 }
 
 .card-inner-img {
@@ -531,55 +531,58 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 13px;
+    border-radius: 11.5px;
 }
 
 /* 4 अलग-अलग चमकदार व आकर्षित फ्रेम्स (Glowing Borders) */
 .frame-gold {
     background: linear-gradient(145deg, #ffd700, #ff8c00, #ffee55);
-    box-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
 }
 
 .frame-neon {
     background: linear-gradient(145deg, #00f0ff, #0055ff, #8000ff);
-    box-shadow: 0 0 18px rgba(0, 240, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
 }
 
 .frame-ruby {
     background: linear-gradient(145deg, #ff0055, #ff0000, #ff77aa);
-    box-shadow: 0 0 18px rgba(255, 0, 85, 0.8);
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.7);
 }
 
 .frame-emerald {
     background: linear-gradient(145deg, #00ff66, #009933, #aaffaa);
-    box-shadow: 0 0 18px rgba(0, 255, 102, 0.8);
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.7);
 }
 
-/* डाउनलोड बटन अब बिल्कुल सही नीचे और थोड़ा बाहर, ग्रीन फिल पल्स एनिमेशन के साथ */
-.green-download-btn {
+/* लाल कलर का ग्लास डाउनलोड बटन जो फोटो से बाहर नीचे की तरफ है */
+.red-glass-download-btn {
     position: absolute;
-    bottom: -12px;
-    right: 12px;
-    width: 38px;
-    height: 38px;
-    background: linear-gradient(135deg, #00ff66, #00b0ff);
-    border: 2.5px solid #ffffff;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 0, 60, 0.65);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 2px solid rgba(255, 255, 255, 0.7);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 900;
-    box-shadow: 0 0 20px rgba(0, 255, 102, 0.9), 0 0 10px rgba(0, 240, 255, 0.8);
+    box-shadow: 0 4px 15px rgba(255, 0, 60, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
     z-index: 10;
-    animation: greenPulse 1.5s infinite;
+    animation: redPulse 1.8s infinite;
 }
 
-@keyframes greenPulse {
-    0% { transform: scale(1); background: #00ff66; box-shadow: 0 0 15px rgba(0, 255, 102, 0.8); }
-    50% { transform: scale(1.12); background: #00ffcc; box-shadow: 0 0 25px rgba(0, 255, 204, 1); }
-    100% { transform: scale(1); background: #00ff66; box-shadow: 0 0 15px rgba(0, 255, 102, 0.8); }
+@keyframes redPulse {
+    0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 10px rgba(255, 0, 60, 0.7); }
+    50% { transform: translateX(-50%) scale(1.12); box-shadow: 0 0 22px rgba(255, 50, 100, 1); }
+    100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 10px rgba(255, 0, 60, 0.7); }
 }
 
 .hot-badge {
@@ -747,7 +750,7 @@ body {
 <div class="rgb-light-3"></div>
 <div class="rgb-light-4"></div>
 
-<!-- Fast Loader (0.3s) -->
+<!-- Fast Loader (0s Instant Hide) -->
 <div id="appLoader">
     <div class="loader-logo-box">
         <div class="loader-logo-text">NEW DIWA GAMES</div>
@@ -932,21 +935,19 @@ setInterval(() => {
     updateSlider();
 }, 3000);
 
-// Instant Hide Loader (300ms)
+// Instant Hide Loader (0s instant)
 function hideLoaderNow() {
     const loader = document.getElementById('appLoader');
     if(loader) {
         loader.style.opacity = '0';
         loader.style.visibility = 'hidden';
+        loader.style.display = 'none';
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(hideLoaderNow, 300);
-});
-window.addEventListener('load', () => {
-    setTimeout(hideLoaderNow, 300);
-});
+document.addEventListener('DOMContentLoaded', hideLoaderNow);
+window.addEventListener('load', hideLoaderNow);
+setTimeout(hideLoaderNow, 50);
 
 const audio = document.getElementById('gfAudio');
 function startTune() {
@@ -980,7 +981,7 @@ let allGames = [];
 const frameClasses = ['frame-gold', 'frame-neon', 'frame-ruby', 'frame-emerald'];
 
 function getImageSrc(imgName) {
-    if (!imgName) return 'https://via.placeholder.com/150x245/00f0ff/02040a?text=Game';
+    if (!imgName) return 'https://via.placeholder.com/150x220/00f0ff/02040a?text=Game';
     if (imgName.startsWith('http://') || imgName.startsWith('https://')) return imgName;
     return imgName;
 }
@@ -1003,8 +1004,8 @@ function renderAppList(games) {
         appsEl.innerHTML += `
             <a href="${game.link || '#'}" class="big-poster-card ${currentFrame}" data-name="${game.name.toLowerCase()}" target="_blank">
                 <span class="hot-badge">Hot</span>
-                <img src="${imgSrc}" class="card-inner-img" alt="${game.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/150x245/00f0ff/02040a?text=${encodeURIComponent(game.name)}'">
-                <div class="green-download-btn"><i class="fa-solid fa-arrow-down"></i></div>
+                <img src="${imgSrc}" class="card-inner-img" alt="${game.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/150x220/00f0ff/02040a?text=${encodeURIComponent(game.name)}'">
+                <div class="red-glass-download-btn"><i class="fa-solid fa-arrow-down"></i></div>
             </a>
         `;
     });
